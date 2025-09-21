@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Video Loop Example</title>
+    <style>
+      /* 화면 전체를 검정 배경으로 */
+      body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: black;
+      }
+
+      /* 가운데 정사각형 영상 */
+      video {
+        width: 400px; /* 원하는 정사각형 크기 */
+        height: 400px; /* 정사각형 유지 */
+        object-fit: cover; /* 영상이 꽉 차도록 */
+        border-radius: 8px; /* 살짝 둥글게 (선택) */
+      }
+    </style>
+  </head>
+  <body>
+    <video autoplay loop muted playsinline>
+      <source src="video.mp4" type="video/mp4" />
+      <source src="video.webm" type="video/webm" />
+      브라우저가 video 태그를 지원하지 않습니다.
+    </video>
+  </body>
+</html>
