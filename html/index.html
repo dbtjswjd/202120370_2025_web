@@ -12,21 +12,48 @@
         justify-content: center;
         align-items: center;
         background-color: black;
+        position: relative;
       }
 
       /* 가운데 정사각형 영상 */
       video {
-        width: 400px; /* 원하는 정사각형 크기 */
-        height: 400px; /* 정사각형 유지 */
+        width: 1000px; /* 원하는 정사각형 크기 */
+        height: 1000px; /* 정사각형 유지 */
         object-fit: cover; /* 영상이 꽉 차도록 */
         border-radius: 8px; /* 살짝 둥글게 (선택) */
+        transform: translateX(-45px); /* → 오른쪽으로 50px 이동 */
+      }
+      .overlay-text {
+        position: absolute;
+        bottom: 250px; /* 화면 아래에서 50px 위로 */
+        font-size: 30px; /* 글자 크기 */
+        font-weight: bold; /* 굵게 */
+        color: white; /* 글자색 */
+        z-index: 10; /* 비디오 위에 오도록 */
+
+        white-space: nowrap; /* 줄바꿈 방지 */
+        overflow: hidden; /* 텍스트 잘라내기 */
+        border-right: 2px solid white; /* 커서 효과 */
+        width: 0; /* 시작 너비 0 */
+        animation: typing 1.75s steps(12) infinite alternate;
+        /* 4초 동안 12글자(steps) 타이핑 → 무한 반복 */
+      }
+
+      @keyframes typing {
+        from {
+          width: 0;
+        }
+        to {
+          width: 14ch;
+        } /* 글자 개수에 맞춰 조정 (여기서는 16글자) */
       }
     </style>
+    <div class="overlay-text">준비중이옵니다...</div>
   </head>
   <body>
     <video autoplay loop muted playsinline>
-      <source src="../src/img/vedio1.mp4" type="../src/img/vedio1.mp4" />
-      <source src="../src/img/vedio1.mp4" type="../src/img/vedio1.mp4" />
+      <source src="../src/img/vedio1.mp4" type="video/mp4" />
+      <source src="video.webm" type="video/webm" />
       브라우저가 video 태그를 지원하지 않습니다.
     </video>
   </body>
