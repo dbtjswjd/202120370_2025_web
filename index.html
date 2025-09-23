@@ -1,60 +1,219 @@
 <!DOCTYPE html>
 <html lang="ko">
   <head>
-    <meta charset="UTF-8" />
-    <title>21세기 청개구리 안전국가 보고서 웹사이트</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>나의 기타 동물 테스트</title>
     <style>
-      /* 화면 전체를 검정 배경으로 */
+      :root {
+        --bg-yellow: #ffe58a;
+        --dot: rgba(0, 0, 0, 0.08);
+        --ink: #111;
+        --btn: #f6d2ff;
+        --btn-hover: #fbc3e5;
+        --btn-border: #9a6cc0;
+        --btn-shadow: #c17de6;
+      }
       body {
         margin: 0;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: black;
+        background: #f5f5f5;
+        font-family: Pretendard, system-ui, -apple-system, Segoe UI, Roboto,
+          Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, '맑은 고딕',
+          sans-serif;
+        color: var(--ink);
+      }
+      /* iPad Pro 11”(834×1194) 비율 */
+      .stage {
         position: relative;
+        width: min(92vw, 834px);
+        aspect-ratio: 834/1194;
+        margin: 2vh auto;
+        background: var(--bg-yellow);
+        overflow: hidden;
+        border-radius: 18px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        isolation: isolate;
       }
-
-      /* 가운데 정사각형 영상 */
-      video {
-        width: 1000px; /* 원하는 정사각형 크기 */
-        height: 1000px; /* 정사각형 유지 */
-        object-fit: cover; /* 영상이 꽉 차도록 */
-        border-radius: 8px; /* 살짝 둥글게 (선택) */
-        transform: translateX(-45px); /* → 오른쪽으로 50px 이동 */
-      }
-      .overlay-text {
+      /* 도트 배경 */
+      .stage::before {
+        content: '';
         position: absolute;
-        bottom: 250px; /* 화면 아래에서 50px 위로 */
-        font-size: 30px; /* 글자 크기 */
-        font-weight: bold; /* 굵게 */
-        color: white; /* 글자색 */
-        z-index: 10; /* 비디오 위에 오도록 */
-
-        white-space: nowrap; /* 줄바꿈 방지 */
-        overflow: hidden; /* 텍스트 잘라내기 */
-        border-right: 2px solid white; /* 커서 효과 */
-        width: 0; /* 시작 너비 0 */
-        animation: typing 1.75s steps(12) infinite alternate;
-        /* 4초 동안 12글자(steps) 타이핑 → 무한 반복 */
+        inset: 0;
+        background: radial-gradient(var(--dot) 1px, transparent 1.2px) 0 0/6px
+          6px;
+        pointer-events: none;
+      }
+      /* 장식 이미지 공통 */
+      .decor img {
+        position: absolute;
+        display: block;
+        max-width: 100%;
+      }
+      /* 중앙 실루엣 */
+      .creature-wrap {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        z-index: 2;
+        transform: scale(2.2);
+        /* height: auto; */
       }
 
-      @keyframes typing {
-        from {
-          width: 0;
+      .creature {
+        width: min(52%, 380px);
+        height: auto;
+        filter: drop-shadow(0 4px 0 rgba(0, 0, 0, 0.25));
+      }
+      /* 중앙 물음표 */
+      .question {
+        position: absolute;
+        left: 50%;
+        top: 34%;
+        transform: translate(-50%, -50%);
+        font-weight: 900;
+        font-size: clamp(32px, 6.2vmin, 72px);
+        color: #fff;
+        text-shadow: 0 3px 0 rgba(0, 0, 0, 0.35);
+        z-index: 3;
+        pointer-events: none;
+      }
+      /* 하단 버튼 */
+      .cta-wrap {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 28px;
+        display: grid;
+        place-items: center;
+        z-index: 4;
+      }
+      .cta {
+        appearance: none;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        padding: 18px 28px;
+        font-size: 18px;
+        font-weight: 700;
+        border-radius: 12px;
+        background: var(--btn);
+        box-shadow: 0 6px 0 var(--btn-shadow), 0 0 0 3px var(--btn-border) inset;
+        transition: transform 0.05s, background-color 0.25s, box-shadow 0.2s;
+      }
+      .cta:hover {
+        background: var(--btn-hover);
+      }
+      .cta:active {
+        transform: translateY(2px);
+        box-shadow: 0 4px 0 var(--btn-shadow), 0 0 0 3px var(--btn-border) inset;
+      }
+      .cta-shadow {
+        position: absolute;
+        inset-inline: calc(50% - 45%);
+        bottom: 12px;
+        height: 14px;
+        background: rgba(0, 0, 0, 0.18);
+        border-radius: 40px;
+        filter: blur(8px);
+        z-index: 1;
+      }
+      @media (max-width: 520px) {
+        .cta {
+          font-size: 16px;
+          padding: 16px 22px;
         }
-        to {
-          width: 14ch;
-        } /* 글자 개수에 맞춰 조정 (여기서는 16글자) */
       }
     </style>
-    <div class="overlay-text">준비중이옵니다...</div>
   </head>
   <body>
-    <video autoplay loop muted playsinline>
-      <source src="./src/img/vedio1.mp4" type="video/mp4" />
-      <source src="video.webm" type="video/webm" />
-      브라우저가 video 태그를 지원하지 않습니다.
-    </video>
+    <main class="stage" aria-label="나의 기타 동물 테스트">
+      <!-- 장식 SVG 이미지들 (배경 장식) -->
+      <div class="decor" aria-hidden="true">
+        <img
+          src="src/svg/double_star.svg"
+          alt=""
+          style="left: 20px; top: 110px; width: 180px"
+        />
+        <img
+          src="src/svg/blue_big_shape .svg"
+          alt=""
+          style="left: 28px; top: 260px; width: 240px"
+        />
+        <img
+          src="assets/bubble.svg"
+          alt=""
+          style="right: 40px; top: 110px; width: 360px"
+        />
+        <img
+          src="assets/splash-right.svg"
+          alt=""
+          style="right: -10px; top: 340px; width: 260px"
+        />
+        <img
+          src="assets/spark.svg"
+          alt=""
+          style="left: -10px; bottom: 110px; width: 220px"
+        />
+        <!-- 스포트라이트도 svg 파일로 -->
+        <img
+          src="src/svg/spot_light.svg"
+          alt=""
+          style="left: 0; top: 0; width: 100%; height: 88%"
+        />
+      </div>
+
+      <!-- 중앙 물음표 -->
+      <div class="question">?</div>
+
+      <!-- 중앙 실루엣 이미지 -->
+      <div class="creature-wrap">
+        <img
+          id="creature"
+          class="creature"
+          src="assets/creature-1.png"
+          alt="실루엣"
+        />
+      </div>
+
+      <!-- 하단 버튼 -->
+      <div class="cta-wrap">
+        <button id="startBtn" class="cta" type="button">
+          나의 기타 동물 테스트 시작하기
+        </button>
+        <div class="cta-shadow" aria-hidden="true"></div>
+      </div>
+    </main>
+
+    <script>
+      /* 중앙 실루엣: 1초 간격 자동 교체 */
+      const frames = [
+        'src/img/1.png',
+        'src/img/2.png',
+        'src/img/3.png',
+        'src/img/4.png',
+        'src/img/5.png',
+        'src/img/6.png',
+      ];
+      const creatureEl = document.getElementById('creature');
+      frames.forEach((src) => {
+        const i = new Image();
+        i.src = src;
+      });
+      let idx = 0;
+      setInterval(() => {
+        idx = (idx + 1) % frames.length;
+        creatureEl.src = frames[idx];
+      }, 1000);
+
+      /* 버튼 클릭 시 이동 */
+      document.getElementById('startBtn').addEventListener('click', () => {
+        // location.href = "start.html";
+        alert('시작! (연결할 페이지를 설정하세요)');
+      });
+    </script>
   </body>
 </html>
