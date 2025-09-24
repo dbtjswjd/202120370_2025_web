@@ -16,9 +16,9 @@
     />
     <title>나의 기타 동물 테스트</title>
     <style>
-      /* @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css');
+      @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css');
 
-      @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap'); */
+      @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
       :root {
         --bg-yellow: #ffe58a;
         --dot: rgba(0, 0, 0, 0.08);
@@ -66,14 +66,15 @@
 
       .speech {
         position: absolute;
-        display: block;
-        max-width: 100%;
-        z-index: 20;
-
-        right: 40px;
         top: 110px;
+        right: 0px; /* 👉 여기 값을 조정하면 오른쪽 여백 변경 */
         width: 360px;
         z-index: 20;
+      }
+      .speech img {
+        display: block;
+        width: 100%; /* 부모(.speech) 너비를 꽉 채움 */
+        height: auto;
       }
 
       /* 중앙 실루엣 */
@@ -194,6 +195,7 @@
       <div class="speech" aria-hidden="true">
         <img src="src/svg/speech_bubble.svg" alt="" style="width: 330px" />
       </div>
+      <!-- 말풍선 배경 -->
 
       <!-- 중앙 물음표 -->
       <div class="question">?</div>
