@@ -22,7 +22,7 @@
       :root {
         --bg-yellow: #ffe58a;
         --dot: rgba(0, 0, 0, 0.08);
-        --ink: #111;
+        --ink: #000;
         --btn: #fde4ff;
         --btn-hover: #fbc3e5;
         --btn-border: #000;
@@ -172,10 +172,18 @@
         /* border-radius: 12px; */
         background: var(--btn);
         z-index: 20;
+        color: var(--ink); /* 글자 색 고정 */
 
         /* background-color: #fde4ff; */
         /* transition: transform 0.05s, background-color 0.25s, box-shadow 0.2s; */
       }
+
+      .cta:focus,
+      .cta:active,
+      .cta:visited {
+        color: var(--ink);
+      }
+      /* 글자색 고정 */
 
       /* 버튼 그림자 박스 */
       .cta-shadow-box {
