@@ -93,6 +93,15 @@
         transform: scale(0.95);
       }
 
+      .star {
+        position: absolute;
+        z-index: 18;
+        /* style="left: 235px; top: 218px; width: 50px" */
+        top: 218px;
+        left: 227px;
+        width: 50px;
+      }
+
       /* 중앙 실루엣 */
       .creature-wrap {
         position: absolute;
@@ -183,18 +192,24 @@
         <img
           src="src/svg/double_star.svg"
           alt=""
-          style="left: 20px; top: 56px; width: 180px"
+          style="left: 38px; top: 30px; width: 197px"
         />
         <img
-          src="src/svg/blue_big_shape .svg"
+          src="src/svg/black_middle_shape.svg"
           alt=""
-          style="left: 0px; top: 250px; width: 323px"
+          style="left: 185px; top: 150px; width: 66px"
         />
 
         <img
-          src="assets/splash-right.svg"
+          src="src/svg/blue_big_shape .svg"
           alt=""
-          style="right: -10px; top: 340px; width: 260px"
+          style="left: 0px; top: 320px; width: 323px"
+        />
+
+        <img
+          src="src/svg/right_blue.svg"
+          alt=""
+          style="right: 0px; top: 410px; width: 260px"
         />
         <img
           src="assets/spark.svg"
@@ -218,6 +233,10 @@
           alt=""
           style="width: 330px"
         />
+      </div>
+      <!-- 말풍선 그림자 -->
+      <div class="star">
+        <img src="src/svg/left_white_shape.png" alt="" />
       </div>
 
       <!-- 중앙 물음표 -->
