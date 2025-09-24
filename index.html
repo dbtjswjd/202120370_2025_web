@@ -144,7 +144,7 @@
         transform: translate(-50%, -50%);
         font-weight: 100;
         font-family: 'Jua', sans-serif;
-        font-size: 125px;
+        font-size: 80px;
         color: #fff;
         /* text-shadow: 0 3px 0 rgba(0, 0, 0, 0.35); */
         z-index: 3;
@@ -155,7 +155,7 @@
         position: absolute;
         left: 0;
         right: 0;
-        bottom: 48px;
+        bottom: 40px;
         display: grid;
         place-items: center;
         z-index: 4;
@@ -164,17 +164,33 @@
         appearance: none;
         border: none;
         cursor: pointer;
-        outline: none;
+        outline: 2.5px solid #000;
+        /* border-radius: 2rem; */
         padding: 26px 150px;
         font-size: 18px;
         font-weight: 700;
-        border-radius: 12px;
+        /* border-radius: 12px; */
         background: var(--btn);
-        box-shadow: 13px 20px 0 var(--btn-shadow),
-          0 0 0 3px var(--btn-border) inset;
+        z-index: 20;
+
         /* background-color: #fde4ff; */
         /* transition: transform 0.05s, background-color 0.25s, box-shadow 0.2s; */
       }
+
+      /* 버튼 그림자 박스 */
+      .cta-shadow-box {
+        position: absolute;
+        padding: 26px 150px;
+        outline: 2.5px solid #000;
+        left: 25px;
+        right: 0;
+        bottom: -40px;
+        transform: scale(0.64);
+        background: var(--btn-shadow); /* 그림자 색 */
+        height: 100%;
+        z-index: 1; /* 버튼 밑으로 */
+      }
+
       .cta:hover {
         background: var(--btn-hover);
       }
@@ -317,6 +333,8 @@
 
       <!-- 하단 버튼 -->
       <div class="cta-wrap">
+        <div class="cta-shadow-box"></div>
+
         <button id="startBtn" class="cta" type="button">
           나의 기타 동물 테스트 시작하기
         </button>
