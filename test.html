@@ -1,25 +1,226 @@
-<!-- start.html -->
 <!DOCTYPE html>
 <html lang="ko">
   <head>
     <meta charset="utf-8" />
-    <title>테스트 시작 페이지</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <link
+      rel="stylesheet"
+      href="'https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css'"
+    />
+    <link
+      rel="stylesheet"
+      href="'https://fonts.googleapis.com/css2?family=Jua&display=swap"
+    />
+    <title>나의 기타 동물 테스트</title>
     <style>
-      body {
-        font-family: Pretendard, sans-serif;
-        background: #ffe58a;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
+      @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css');
+
+      @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+      :root {
+        --bg-yellow: #ffe58a;
+        --dot: rgba(0, 0, 0, 0.08);
+        --ink: #111;
+        --btn: #fde4ff;
+        --btn-hover: #fbc3e5;
+        --btn-border: #000;
+        --btn-shadow: #f2a1ff;
       }
-      h1 {
-        font-size: 2rem;
-        color: #111;
+      body {
+        margin: 0;
+        background: #f5f5f5;
+        font-family: Pretendard, system-ui, -apple-system, Segoe UI, Roboto,
+          Apple SD Gothic Neo, Noto Sans KR, Helvetica, Arial, '맑은 고딕',
+          sans-serif;
+        color: var(--ink);
+      }
+      /* iPad Pro 11”(834×1194) 비율 */
+      .stage {
+        position: relative;
+        width: min(92vw, 834px);
+        aspect-ratio: 834/1194;
+        margin: 2vh auto;
+        background: var(--bg-yellow);
+        overflow: hidden;
+        border-radius: 18px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        isolation: isolate;
+      }
+      /* 도트 배경 */
+      .stage::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(var(--dot) 1px, transparent 1.2px) 0 0/6px
+          6px;
+        pointer-events: none;
+      }
+      /* 장식 이미지 공통 */
+      .decor img {
+        position: absolute;
+        display: block;
+        max-width: 100%;
+      }
+
+      .speech {
+        position: absolute;
+        top: 110px;
+        right: 0px; /* 👉 여기 값을 조정하면 오른쪽 여백 변경 */
+        width: 360px;
+        z-index: 20;
+      }
+      .speech img {
+        display: block;
+        width: 100%; /* 부모(.speech) 너비를 꽉 채움 */
+        height: auto;
+        transform: scale(0.78);
+      }
+
+      .speech_shadow {
+        position: absolute;
+        top: 75px;
+        right: -10px; /* 👉 여기 값을 조정하면 오른쪽 여백 변경 */
+        width: 360px;
+        z-index: 19;
+      }
+
+      .speech_shadow img {
+        display: block;
+        width: 100%; /* 부모(.speech) 너비를 꽉 채움 */
+        height: auto;
+        transform: scale(0.95);
+      }
+
+      .star {
+        position: absolute;
+        z-index: 18;
+        /* style="left: 235px; top: 218px; width: 50px" */
+        top: 218px;
+        left: 227px;
+        width: 50px;
+      }
+
+      .boom {
+        /* style="left: -10px; bottom: 110px; width: 220px" */
+        position: absolute;
+        z-index: 18;
+        bottom: 100px;
+        left: -10px;
+        transform: scale(0.92);
+      }
+
+      .big_star {
+        position: absolute;
+        z-index: 19;
+        bottom: 85px;
+        left: 138px;
+        transform: scale(1);
+      }
+
+      /* @media (max-width: 520px) {
+        .cta {
+          font-size: 16px;
+          padding: 16px 22px;
+        }
+      } */
+
+      body {
+        font-family: 'Pretendard', sans-serif;
       }
     </style>
   </head>
   <body>
-    <h1>나의 기타 동물 테스트가 시작됩니다 🎉</h1>
+    <main class="stage" aria-label="나의 기타 동물 테스트">
+      <!-- 장식 SVG 이미지들 (배경 장식) -->
+      <div class="decor" aria-hidden="true">
+        <img
+          src="src/svg/double_star.svg"
+          alt=""
+          style="left: 25px; top: 30px; width: 200px"
+        />
+        <img
+          src="src/svg/black_middle_shape.svg"
+          alt=""
+          style="left: 185px; top: 150px; width: 66px"
+        />
+
+        <img
+          src="src/svg/blue_big_shape .svg"
+          alt=""
+          style="left: 0px; top: 320px; width: 323px"
+        />
+
+        <img
+          src="src/svg/right_blue.svg"
+          alt=""
+          style="right: 5px; top: 540px; width: 230px"
+        />
+
+        <img
+          src="src/svg/right_down_blue_white.svg"
+          alt=""
+          style="right: 0px; bottom: 44px; width: 300px"
+        />
+
+        <img
+          src="src/svg/right_white_shape.svg"
+          alt=""
+          style="right: 20px; top: 18px; width: 48px"
+        />
+
+        <img
+          src="src/svg/right_balck_shape.svg"
+          alt=""
+          style="right: 125px; top: 352px; width: 78px"
+        />
+
+        <img
+          src="src/svg/right_small_white.svg"
+          alt=""
+          style="right: 90px; top: 420px; width: 36px"
+        />
+
+        <img
+          src="src/svg/right_small_white.svg"
+          alt=""
+          style="left: 45px; top: 420px; width: 36px"
+        />
+
+        <img
+          src="src/svg/left_down_small_shape.svg"
+          alt=""
+          style="left: 50px; bottom: 310px; width: 50px"
+        />
+      </div>
+      <div class="speech" aria-hidden="true">
+        <img src="src/svg/speech_bubble.svg" alt="" style="width: 330px" />
+      </div>
+      <!-- 말풍선 배경 -->
+
+      <div class="speech_shadow">
+        <img
+          src="src/svg/speech_bubble_shadow.svg"
+          alt=""
+          style="width: 330px"
+        />
+      </div>
+      <!-- 말풍선 그림자 -->
+
+      <div class="star">
+        <img src="src/svg/left_white_shape.png" alt="" />
+      </div>
+      <!-- 왼쪽 하얀 별 -->
+
+      <div class="boom">
+        <img src="src/svg/left_dwon_black_boom.svg" alt="" />
+      </div>
+      <!-- 검정 폭탄모양 -->
+
+      <div class="big_star">
+        <img src="src/svg/left_down_middle_shape.svg" alt="" />
+      </div>
+    </main>
   </body>
 </html>
