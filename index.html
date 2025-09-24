@@ -223,6 +223,21 @@
         }
       }
 
+      .speech-text {
+        position: absolute; /* 말풍선 안쪽에 겹쳐서 배치 */
+        top: 100px; /* 세로 중앙 */
+        left: 165px; /* 가로 중앙 */
+        transform: translate(-50%, -50%); /* 정확히 가운데 정렬 */
+        font-family: Pretendard, sans-serif;
+        font-size: 26px;
+        font-weight: 700;
+        color: #000;
+        text-align: center;
+        width: 80%; /* 말풍선 크기에 맞게 */
+        line-height: 1.4;
+      }
+      /* 말풍선 안 텍스트 */
+
       body {
         font-family: 'Pretendard', sans-serif;
       }
@@ -300,6 +315,7 @@
       </div>
       <div class="speech" aria-hidden="true">
         <img src="src/svg/speech_bubble.svg" alt="" style="width: 330px" />
+        <p class="speech-text">나는 무슨 동물일까?</p>
       </div>
       <!-- 말풍선 배경 -->
 
