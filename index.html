@@ -77,6 +77,21 @@
         height: auto;
       }
 
+      .speech_shadow {
+        position: absolute;
+        top: 75px;
+        right: -10px; /* 👉 여기 값을 조정하면 오른쪽 여백 변경 */
+        width: 360px;
+        z-index: 19;
+      }
+
+      .speech_shadow img {
+        display: block;
+        width: 100%; /* 부모(.speech) 너비를 꽉 채움 */
+        height: auto;
+        transform: scale(1.18);
+      }
+
       /* 중앙 실루엣 */
       .creature-wrap {
         position: absolute;
@@ -196,6 +211,13 @@
         <img src="src/svg/speech_bubble.svg" alt="" style="width: 330px" />
       </div>
       <!-- 말풍선 배경 -->
+      <div class="speech_shadow">
+        <img
+          src="src/svg/speech_bubble_shadow.svg"
+          alt=""
+          style="width: 330px"
+        />
+      </div>
 
       <!-- 중앙 물음표 -->
       <div class="question">?</div>
