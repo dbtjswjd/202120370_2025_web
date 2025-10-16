@@ -129,6 +129,128 @@
       body {
         font-family: 'Pretendard', sans-serif;
       }
+
+      /* ===== Survey Panel ===== */
+      .survey-panel {
+        position: absolute; /* 배경 위에 놓기 */
+        top: 80px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: min(90%, 720px);
+        background: #fff;
+        border: 3px solid #000;
+        border-radius: 12px;
+        padding: 28px 28px 36px;
+        z-index: 30;
+        box-shadow: 0 8px 0 rgba(0, 0, 0, 0.2);
+      }
+
+      .survey-panel ol {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      .survey-item {
+        margin: 22px 0 30px;
+      }
+      .survey-item p {
+        margin: 0 0 14px;
+        line-height: 1.5;
+        font-weight: 600;
+        font-size: 18px;
+        color: #111;
+      }
+
+      /* 척도 라인 */
+      .scale {
+        position: relative;
+        display: flex;
+        gap: 28px;
+        justify-content: space-between;
+        align-items: center;
+        padding: 6px 8px;
+      }
+      .scale::before {
+        content: '';
+        position: absolute;
+        left: 22px;
+        right: 22px;
+        top: 50%;
+        height: 3px;
+        background: #000;
+        transform: translateY(-50%);
+        z-index: 0;
+      }
+
+      /* 접근성: 진짜 input은 화면에서 숨기되 포커스는 가능하게 */
+      .sr-only {
+        position: absolute !important;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      /* 클릭영역 */
+      .scale label {
+        position: relative;
+        z-index: 1; /* 라인 위에 */
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* 동그라미 */
+      .dot {
+        width: 26px;
+        height: 26px;
+        border: 2.5px solid #000;
+        border-radius: 50%;
+        background: #fff;
+        transition: background 0.12s ease, transform 0.05s ease;
+      }
+
+      /* 선택되면 검게 채움 */
+      .scale input:checked + .dot {
+        background: #000;
+      }
+
+      /* 포커스(키보드 접근) 표시 */
+      .scale input:focus-visible + .dot {
+        outline: 3px solid #5b9dd9;
+        outline-offset: 3px;
+      }
+
+      /* 눌렀을 때 살짝 축소 */
+      .scale input:active + .dot {
+        transform: scale(0.96);
+      }
+
+      /* 반응형 약간 줄이기 */
+      @media (max-width: 520px) {
+        .survey-panel {
+          width: 92%;
+          padding: 22px 18px 28px;
+        }
+        .survey-item p {
+          font-size: 16px;
+        }
+        .scale {
+          gap: 18px;
+        }
+        .dot {
+          width: 22px;
+          height: 22px;
+        }
+        .scale::before {
+          left: 18px;
+          right: 18px;
+        }
+      }
     </style>
   </head>
   <body>
@@ -194,19 +316,6 @@
           style="left: 50px; bottom: 310px; width: 50px"
         />
       </div>
-      <div class="speech" aria-hidden="true">
-        <img src="src/svg/speech_bubble.svg" alt="" style="width: 330px" />
-      </div>
-      <!-- 말풍선 배경 -->
-
-      <div class="speech_shadow">
-        <img
-          src="src/svg/speech_bubble_shadow.svg"
-          alt=""
-          style="width: 330px"
-        />
-      </div>
-      <!-- 말풍선 그림자 -->
 
       <div class="star">
         <img src="src/svg/left_white_shape.png" alt="" />
@@ -221,6 +330,250 @@
       <div class="big_star">
         <img src="src/svg/left_down_middle_shape.svg" alt="" />
       </div>
+
+      <section class="survey-panel">
+        <ol>
+          <!-- 1 -->
+          <li class="survey-item">
+            <p>
+              1. 새로운 사람을 만나는 것이 반갑지만, 동시에 부담스럽게 느껴질
+              때가 많다.
+            </p>
+            <div class="scale">
+              <label
+                ><input class="sr-only" type="radio" name="q1" value="1" /><span
+                  class="dot"
+                ></span
+              ></label>
+              <label
+                ><input class="sr-only" type="radio" name="q1" value="2" /><span
+                  class="dot"
+                ></span
+              ></label>
+              <label
+                ><input class="sr-only" type="radio" name="q1" value="3" /><span
+                  class="dot"
+                ></span
+              ></label>
+              <label
+                ><input class="sr-only" type="radio" name="q1" value="4" /><span
+                  class="dot"
+                ></span
+              ></label>
+              <label
+                ><input class="sr-only" type="radio" name="q1" value="5" /><span
+                  class="dot"
+                ></span
+              ></label>
+              <label
+                ><input class="sr-only" type="radio" name="q1" value="6" /><span
+                  class="dot"
+                ></span
+              ></label>
+            </div>
+          </li>
+
+          <!-- 2 -->
+          <li class="survey-item">
+            <p>
+              2. 나는 계획한 하루의 루틴이 깨지면 쉽게 불안해지거나 스트레스를
+              받는다.
+            </p>
+            <div class="scale">
+              <label
+                ><input class="sr-only" type="radio" name="q2" value="1" /><span
+                  class="dot"
+                ></span
+              ></label>
+              <label
+                ><input class="sr-only" type="radio" name="q2" value="2" /><span
+                  class="dot"
+                ></span
+              ></label>
+              <label
+                ><input class="sr-only" type="radio" name="q2" value="3" /><span
+                  class="dot"
+                ></span
+              ></label>
+              <label
+                ><input class="sr-only" type="radio" name="q2" value="4" /><span
+                  class="dot"
+                ></span
+              ></label>
+              <label
+                ><input class="sr-only" type="radio" name="q2" value="5" /><span
+                  class="dot"
+                ></span
+              ></label>
+              <label
+                ><input class="sr-only" type="radio" name="q2" value="6" /><span
+                  class="dot"
+                ></span
+              ></label>
+            </div>
+          </li>
+
+          <!-- 3 -->
+          <li class="survey-item">
+            <p>
+              3. 다른 사람들은 쉽게 지나치는 부분에서, 나는 깊이 생각에 빠질
+              때가 있다.
+            </p>
+            <div class="scale">
+              <label
+                ><input class="sr-only" type="radio" name="q3" value="1" /><span
+                  class="dot"
+                ></span
+              ></label>
+              <label
+                ><input class="sr-only" type="radio" name="q3" value="2" /><span
+                  class="dot"
+                ></span
+              ></label>
+              <label
+                ><input class="sr-only" type="radio" name="q3" value="3" /><span
+                  class="dot"
+                ></span
+              ></label>
+              <label
+                ><input class="sr-only" type="radio" name="q3" value="4" /><span
+                  class="dot"
+                ></span
+              ></label>
+              <label
+                ><input class="sr-only" type="radio" name="q3" value="5" /><span
+                  class="dot"
+                ></span
+              ></label>
+              <label
+                ><input class="sr-only" type="radio" name="q3" value="6" /><span
+                  class="dot"
+                ></span
+              ></label>
+            </div>
+          </li>
+
+          <!-- 4 -->
+          <li class="survey-item">
+            <p>
+              4. 불편한 상황이 생겼을 때 “괜찮겠지” 하며 대수롭지 않게 넘기는
+              편이다.
+            </p>
+            <div class="scale">
+              <label
+                ><input class="sr-only" type="radio" name="q4" value="1" /><span
+                  class="dot"
+                ></span
+              ></label>
+              <label
+                ><input class="sr-only" type="radio" name="q4" value="2" /><span
+                  class="dot"
+                ></span
+              ></label>
+              <label
+                ><input class="sr-only" type="radio" name="q4" value="3" /><span
+                  class="dot"
+                ></span
+              ></label>
+              <label
+                ><input class="sr-only" type="radio" name="q4" value="4" /><span
+                  class="dot"
+                ></span
+              ></label>
+              <label
+                ><input class="sr-only" type="radio" name="q4" value="5" /><span
+                  class="dot"
+                ></span
+              ></label>
+              <label
+                ><input class="sr-only" type="radio" name="q4" value="6" /><span
+                  class="dot"
+                ></span
+              ></label>
+            </div>
+          </li>
+
+          <!-- 5 -->
+          <li class="survey-item">
+            <p>
+              5. 누군가가 나를 잘 모른 채 ‘평범하다’고 말하면, 속으로는 은근히
+              억울하다.
+            </p>
+            <div class="scale">
+              <label
+                ><input class="sr-only" type="radio" name="q5" value="1" /><span
+                  class="dot"
+                ></span
+              ></label>
+              <label
+                ><input class="sr-only" type="radio" name="q5" value="2" /><span
+                  class="dot"
+                ></span
+              ></label>
+              <label
+                ><input class="sr-only" type="radio" name="q5" value="3" /><span
+                  class="dot"
+                ></span
+              ></label>
+              <label
+                ><input class="sr-only" type="radio" name="q5" value="4" /><span
+                  class="dot"
+                ></span
+              ></label>
+              <label
+                ><input class="sr-only" type="radio" name="q5" value="5" /><span
+                  class="dot"
+                ></span
+              ></label>
+              <label
+                ><input class="sr-only" type="radio" name="q5" value="6" /><span
+                  class="dot"
+                ></span
+              ></label>
+            </div>
+          </li>
+
+          <!-- 6 -->
+          <li class="survey-item">
+            <p>
+              6. 나는 현실적인 계획보다, 종종 엉뚱한 상상이나 기발한 아이디어에
+              빠져든다.
+            </p>
+            <div class="scale">
+              <label
+                ><input class="sr-only" type="radio" name="q6" value="1" /><span
+                  class="dot"
+                ></span
+              ></label>
+              <label
+                ><input class="sr-only" type="radio" name="q6" value="2" /><span
+                  class="dot"
+                ></span
+              ></label>
+              <label
+                ><input class="sr-only" type="radio" name="q6" value="3" /><span
+                  class="dot"
+                ></span
+              ></label>
+              <label
+                ><input class="sr-only" type="radio" name="q6" value="4" /><span
+                  class="dot"
+                ></span
+              ></label>
+              <label
+                ><input class="sr-only" type="radio" name="q6" value="5" /><span
+                  class="dot"
+                ></span
+              ></label>
+              <label
+                ><input class="sr-only" type="radio" name="q6" value="6" /><span
+                  class="dot"
+                ></span
+              ></label>
+            </div>
+          </li>
+        </ol>
+      </section>
     </main>
   </body>
 </html>
