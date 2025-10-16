@@ -251,6 +251,39 @@
           right: 18px;
         }
       }
+      /* 다음으로 버튼 부분 */
+      .cta-wrap {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 225px;
+        display: grid;
+        place-items: center;
+        z-index: 28;
+      }
+      .cta {
+        appearance: none;
+        border: none;
+        cursor: pointer;
+        outline: 2.5px solid #000;
+        /* border-radius: 2rem; */
+        padding: 26px 105px;
+        font-size: 22px;
+        font-weight: 700;
+        /* border-radius: 12px; */
+        background: var(--btn);
+        z-index: 20;
+        color: var(--ink); /* 글자 색 고정 */
+
+        /* background-color: #fde4ff; */
+        /* transition: transform 0.05s, background-color 0.25s, box-shadow 0.2s; */
+      }
+
+      .cta:focus,
+      .cta:active,
+      .cta:visited {
+        color: var(--ink);
+      }
     </style>
   </head>
   <body>
@@ -574,6 +607,14 @@
           </li>
         </ol>
       </section>
+      <div class="cta-wrap">
+        <div class="cta-shadow-box"></div>
+
+        <button id="startBtn" class="cta" type="button">
+          다음 페이지 ( 1/2 )
+        </button>
+        <div class="cta-shadow" aria-hidden="true"></div>
+      </div>
     </main>
   </body>
 </html>
