@@ -492,11 +492,6 @@
               4. 불편한 상황이 생겼을 때 “괜찮겠지” 하며 대수롭지 않게 넘기는
               편이다.
             </p>
-            <!-- 낮음 높음 표시 -->
-            <div class="scale-labels">
-              <span>낮음</span>
-              <span>높음</span>
-            </div>
             <div class="scale">
               <label
                 ><input class="sr-only" type="radio" name="q4" value="1" /><span
@@ -616,7 +611,7 @@
         <div class="cta-shadow-box"></div>
 
         <button id="startBtn" class="cta" type="button">
-          다음 페이지 ( 1/2 )
+          >> 결과 확인하기 >>
         </button>
         <div class="cta-shadow" aria-hidden="true"></div>
       </div>
@@ -626,7 +621,7 @@
       document
         .getElementById('startBtn')
         .addEventListener('click', function () {
-          window.location.href = 'test2.html'; // ← 새로 만들 3번째 페이지 파일명
+          window.location.href = 'result.html'; // ← 새로 만들 3번째 페이지 파일명
         });
     </script>
   </body>
