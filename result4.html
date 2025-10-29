@@ -270,8 +270,30 @@
       body {
         font-family: 'Pretendard', sans-serif;
       }
+      #homeBtn {
+        position: fixed; /* stage 밖에서도 고정되게 */
+
+        top: 13.5%;
+        left: 14.2%;
+        padding: 10px 18px;
+        font-size: 16px;
+        font-weight: 600;
+        color: #111;
+        background: #fff;
+        border: 2px solid #000;
+        border-radius: 8px;
+        cursor: pointer;
+        z-index: 99999; /* 🔥 stage 내부 모든 요소 위로 */
+        box-shadow: 3px 3px 0 #000;
+        transition: transform 0.1s ease, box-shadow 0.1s ease;
+      }
+      #homeBtn:hover {
+        transform: translate(2px, 2px);
+        box-shadow: 1px 1px 0 #000;
+      }
     </style>
   </head>
+  <button id="homeBtn">처음으로</button>
   <body>
     <main class="stage" aria-label="나의 기타 동물 테스트">
       <!-- 장식 SVG 이미지들 (배경 장식) -->
@@ -408,6 +430,10 @@
       });
       const scores = JSON.parse(localStorage.getItem('totalScores'));
       console.log('최종 점수:', scores);
+      // 클릭 시 첫 페이지(test.html)로 이동
+      document.getElementById('homeBtn').addEventListener('click', () => {
+        window.location.href = 'index.html'; // ⚠️ 첫 페이지 파일 이름에 맞게 조정
+      });
     </script>
   </body>
 </html>
