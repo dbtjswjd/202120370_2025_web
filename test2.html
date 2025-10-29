@@ -635,6 +635,79 @@
         .addEventListener('click', function () {
           window.location.href = 'result2.html'; // ← 새로 만들 3번째 페이지 파일명
         });
+
+      // ✅ [2] test2.html: page1 점수 + page2 점수 합산
+      function collectTotalScores() {
+        const totals = JSON.parse(localStorage.getItem('page1Scores')) || {
+          elephantShrew: 0,
+          ayeAye: 0,
+          pangolin: 0,
+          hippo: 0,
+          koala: 0,
+          platypus: 0,
+        };
+
+        const formData = {};
+        for (let i = 1; i <= 6; i++) {
+          const selected = document.querySelector(
+            `input[name="q${i}"]:checked`
+          );
+          if (selected) formData[`q${i}`] = Number(selected.value);
+        }
+
+        const isHigh = (v) => v >= 4;
+
+        // Page2 매핑 (Q7~Q12)
+        if (formData.q1 !== undefined) {
+          if (isHigh(formData.q1))
+            (totals.elephantShrew += 1), (totals.pangolin += 1);
+          else totals.ayeAye += 1;
+        }
+        if (formData.q2 !== undefined) {
+          if (isHigh(formData.q2)) (totals.koala += 1), (totals.pangolin += 1);
+          else totals.platypus += 1;
+        }
+        if (formData.q3 !== undefined) {
+          if (isHigh(formData.q3)) (totals.pangolin += 1), (totals.ayeAye += 1);
+        }
+        if (formData.q4 !== undefined) {
+          if (isHigh(formData.q4)) totals.hippo += 1;
+          else totals.pangolin += 1;
+        }
+        if (formData.q5 !== undefined) {
+          if (isHigh(formData.q5)) (totals.platypus += 1), (totals.ayeAye += 1);
+        }
+        if (formData.q6 !== undefined) {
+          if (isHigh(formData.q6)) (totals.ayeAye += 1), (totals.platypus += 1);
+          else totals.koala += 1;
+        }
+
+        // 최댓값 동물 찾기
+        const maxKey = Object.keys(totals).reduce((a, b) =>
+          totals[a] > totals[b] ? a : b
+        );
+
+        localStorage.setItem('totalScores', JSON.stringify(totals));
+        localStorage.setItem('finalResult', maxKey);
+
+        // 동물별 결과 페이지로 분기
+        const resultMap = {
+          elephantShrew: 'result1.html',
+          ayeAye: 'result5.html',
+          pangolin: 'result4.html',
+          hippo: 'result2.html',
+          koala: 'result3.html',
+          platypus: 'result6.html',
+        };
+
+        const go = resultMap[maxKey] || 'result1.html';
+        window.location.href = go;
+      }
+
+      // ✅ “결과 보기” 버튼 클릭 시 실행
+      document
+        .getElementById('startBtn')
+        .addEventListener('click', () => collectTotalScores());
     </script>
   </body>
 </html>

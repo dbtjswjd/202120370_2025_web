@@ -407,6 +407,8 @@
         location.href = 'test.html';
         // alert('시작! (연결할 페이지를 설정하세요)');
       });
+      const scores = JSON.parse(localStorage.getItem('totalScores'));
+      console.log('최종 점수:', scores);
     </script>
   </body>
 </html>
