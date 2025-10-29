@@ -724,21 +724,28 @@
           (k) => totals[k] === maxScore
         );
 
-        // ✅ [3] 동점 처리 로직
+        // ✅ [3] 동점 처리 로직 + 중복 방지
         let maxKey;
+        const lastResult = localStorage.getItem('lastResult');
+
         if (candidates.length === 1) {
           // 단일 결과면 그대로 사용
           maxKey = candidates[0];
         } else {
-          // 여러 동물이 동점이면 무작위로 선택
-          const randomIndex = Math.floor(Math.random() * candidates.length);
-          maxKey = candidates[randomIndex];
+          // 여러 동물이 동점이면 랜덤 선택
+          let randomIndex;
+          do {
+            randomIndex = Math.floor(Math.random() * candidates.length);
+            maxKey = candidates[randomIndex];
+          } while (candidates.length > 1 && maxKey === lastResult);
+
           console.log('🎲 동점! 랜덤 선택됨:', maxKey);
         }
 
         // ✅ [4] 결과 저장
         localStorage.setItem('totalScores', JSON.stringify(totals));
         localStorage.setItem('finalResult', maxKey);
+        localStorage.setItem('lastResult', maxKey); // 이전 결과로 저장
 
         // ✅ [5] 결과 페이지 맵핑
         const resultMap = {
