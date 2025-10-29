@@ -636,7 +636,6 @@
           window.location.href = 'result2.html'; // ← 새로 만들 3번째 페이지 파일명
         });
 
-      // ✅ [2] test2.html: page1 점수 + page2 점수 합산
       function collectTotalScores() {
         const totals = JSON.parse(localStorage.getItem('page1Scores')) || {
           elephantShrew: 0,
@@ -656,55 +655,86 @@
         }
 
         const isHigh = (v) => v >= 4;
+        const isVeryHigh = (v) => v === 5;
 
-        // Page2 매핑 (Q7~Q12)
+        // Q7 (관계는 반갑지만 부담)  ❗아이아이 제거, 코끼리땃쥐/천산갑 쪽으로
         if (formData.q1 !== undefined) {
-          if (isHigh(formData.q1))
-            (totals.elephantShrew += 1), (totals.pangolin += 1);
-          else totals.ayeAye += 1;
+          if (isHigh(formData.q1)) {
+            totals.elephantShrew += 1;
+            totals.pangolin += 1;
+          } else {
+            totals.koala += 1; // 가까움 부담이 낮다면 보다 안정/내향에 가깝게
+          }
         }
+
+        // Q8 (루틴 깨지면 불안)
         if (formData.q2 !== undefined) {
-          if (isHigh(formData.q2)) (totals.koala += 1), (totals.pangolin += 1);
-          else totals.platypus += 1;
+          if (isHigh(formData.q2)) {
+            totals.koala += 1;
+            totals.pangolin += 1;
+          } else {
+            totals.platypus += 1; // 변화 허용 → 혼종/유연성
+          }
         }
+
+        // Q9 (사색/예민)  ❗아이아이 → 제거, 천산갑 중심
         if (formData.q3 !== undefined) {
-          if (isHigh(formData.q3)) (totals.pangolin += 1), (totals.ayeAye += 1);
+          if (isHigh(formData.q3)) totals.pangolin += 1;
         }
+
+        // Q10 (위험 무시) 그대로
         if (formData.q4 !== undefined) {
           if (isHigh(formData.q4)) totals.hippo += 1;
           else totals.pangolin += 1;
         }
+
+        // Q11 (평범하단 말에 억울)  ❗오리너구리만
         if (formData.q5 !== undefined) {
-          if (isHigh(formData.q5)) (totals.platypus += 1), (totals.ayeAye += 1);
-        }
-        if (formData.q6 !== undefined) {
-          if (isHigh(formData.q6)) (totals.ayeAye += 1), (totals.platypus += 1);
-          else totals.koala += 1;
+          if (isHigh(formData.q5)) totals.platypus += 1;
         }
 
-        // 최댓값 동물 찾기
-        const maxKey = Object.keys(totals).reduce((a, b) =>
-          totals[a] > totals[b] ? a : b
+        // Q12 (상상/기발함)  ❗기본은 오리너구리, 5점에서만 아이아이 보조
+        if (formData.q6 !== undefined) {
+          if (isHigh(formData.q6)) {
+            totals.platypus += 1;
+            if (isVeryHigh(formData.q6)) totals.ayeAye += 1;
+          } else {
+            totals.koala += 1;
+          }
+        }
+
+        // 최댓값 동물 찾기 (동점 방지용: 우선순위 배열로 안정 분기)
+        const priority = [
+          'elephantShrew',
+          'pangolin',
+          'platypus',
+          'hippo',
+          'koala',
+          'ayeAye',
+        ];
+        const maxScore = Math.max(...Object.values(totals));
+        const candidates = Object.keys(totals).filter(
+          (k) => totals[k] === maxScore
         );
+        const maxKey = candidates.sort(
+          (a, b) => priority.indexOf(a) - priority.indexOf(b)
+        )[0];
 
         localStorage.setItem('totalScores', JSON.stringify(totals));
         localStorage.setItem('finalResult', maxKey);
 
-        // 동물별 결과 페이지로 분기
         const resultMap = {
           elephantShrew: 'result1.html',
-          ayeAye: 'result5.html',
-          pangolin: 'result4.html',
           hippo: 'result2.html',
           koala: 'result3.html',
+          pangolin: 'result4.html',
+          ayeAye: 'result5.html',
           platypus: 'result6.html',
         };
 
-        const go = resultMap[maxKey] || 'result1.html';
-        window.location.href = go;
+        window.location.href = resultMap[maxKey] || 'result1.html';
       }
 
-      // ✅ “결과 보기” 버튼 클릭 시 실행
       document
         .getElementById('startBtn')
         .addEventListener('click', () => collectTotalScores());

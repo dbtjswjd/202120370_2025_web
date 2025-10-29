@@ -647,15 +647,15 @@
 
       function savePage1Scores() {
         const totals = {
-          elephantShrew: 0,
-          ayeAye: 0,
-          pangolin: 0,
-          hippo: 0,
-          koala: 0,
-          platypus: 0,
+          elephantShrew: 0, // 코끼리땃쥐
+          ayeAye: 0, // 아이아이
+          pangolin: 0, // 천산갑
+          hippo: 0, // 하마
+          koala: 0, // 코알라
+          platypus: 0, // 오리너구리
         };
 
-        // 문항별 선택된 값 가져오기
+        // 문항별 선택값
         const formData = {};
         for (let i = 1; i <= 6; i++) {
           const selected = document.querySelector(
@@ -665,37 +665,59 @@
         }
 
         const isHigh = (v) => v >= 4;
+        const isVeryHigh = (v) => v === 5;
 
-        // Page1 매핑 (Q1~Q6)
+        // Q1 (내향↔외향)
         if (formData.q1 !== undefined) {
           if (isHigh(formData.q1)) totals.koala += 1;
           else totals.hippo += 1;
         }
+
+        // Q2 (독립성)
         if (formData.q2 !== undefined) {
-          if (isHigh(formData.q2))
-            (totals.elephantShrew += 1), (totals.platypus += 1);
-        }
-        if (formData.q3 !== undefined) {
-          if (isHigh(formData.q3)) (totals.koala += 1), (totals.pangolin += 1);
-          else totals.hippo += 1;
-        }
-        if (formData.q4 !== undefined) {
-          if (isHigh(formData.q4)) totals.ayeAye += 1;
-          else (totals.elephantShrew += 1), (totals.pangolin += 1);
-        }
-        if (formData.q5 !== undefined) {
-          if (isHigh(formData.q5)) (totals.ayeAye += 1), (totals.platypus += 1);
-        }
-        if (formData.q6 !== undefined) {
-          if (isHigh(formData.q6)) (totals.platypus += 1), (totals.ayeAye += 1);
-          else totals.hippo += 1;
+          if (isHigh(formData.q2)) {
+            totals.elephantShrew += 1;
+            totals.platypus += 1;
+          }
         }
 
-        // localStorage에 저장
+        // Q3 (적응 느림/고집)
+        if (formData.q3 !== undefined) {
+          if (isHigh(formData.q3)) {
+            totals.koala += 1;
+            totals.pangolin += 1;
+          } else {
+            totals.hippo += 1;
+          }
+        }
+
+        // Q4 (외로움)  ❗아이아이 → 제거, 코끼리땃쥐/천산갑로 이동
+        if (formData.q4 !== undefined) {
+          if (isHigh(formData.q4)) {
+            totals.elephantShrew += 1;
+            totals.pangolin += 1;
+          }
+        }
+
+        // Q5 (비밀 무기)  ❗아이아이는 5점에서만 +1
+        if (formData.q5 !== undefined) {
+          if (isHigh(formData.q5)) totals.platypus += 1;
+          if (isVeryHigh(formData.q5)) totals.ayeAye += 1;
+        }
+
+        // Q6 (트릭스타)  ❗기본은 오리너구리, 5점일 때만 아이아이 보조
+        if (formData.q6 !== undefined) {
+          if (isHigh(formData.q6)) {
+            totals.platypus += 1;
+            if (isVeryHigh(formData.q6)) totals.ayeAye += 1;
+          } else {
+            totals.hippo += 1;
+          }
+        }
+
         localStorage.setItem('page1Scores', JSON.stringify(totals));
       }
 
-      // ✅ 다음 페이지로 이동할 때 점수 저장
       document.getElementById('startBtn').addEventListener('click', () => {
         savePage1Scores();
         window.location.href = 'test2.html';
