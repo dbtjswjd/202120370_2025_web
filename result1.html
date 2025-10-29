@@ -128,9 +128,9 @@
       .big_star {
         position: absolute;
         z-index: 19;
-        bottom: 85px;
-        left: 138px;
-        transform: scale(1);
+        bottom: -5px;
+        left: 98px;
+        transform: scale(0.75);
       }
 
       /* 중앙 실루엣 */
@@ -157,7 +157,7 @@
         position: absolute;
         left: 0;
         right: 0;
-        bottom: 45px;
+        bottom: 70px;
         display: grid;
         place-items: center;
         z-index: 4;
@@ -167,18 +167,69 @@
         border: none;
         cursor: pointer;
         outline: 2.5px solid #000;
-        /* border-radius: 2rem; */
-        padding: 80px 205px;
-        font-size: 22px;
-        font-weight: 700;
-        /* border-radius: 12px; */
         background: var(--btn);
-        z-index: 20;
-        color: var(--ink); /* 글자 색 고정 */
+        color: var(--ink);
 
-        /* background-color: #fde4ff; */
-        /* transition: transform 0.05s, background-color 0.25s, box-shadow 0.2s; */
+        /* 카드 형태 & 좌측 정렬 */
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+        gap: 20px;
+
+        /* 이미지에 맞춘 크기 느낌 */
+        width: min(72%, 681px);
+        min-height: 170px;
+        padding: 20px 24px;
+        /* border-radius: 12px; */
       }
+
+      .cta-title {
+        font-family: 'Jua', Pretendard, sans-serif;
+        font-weight: 700;
+        margin-top: 10px;
+        font-size: clamp(22px, 3.2vw, 32px);
+        line-height: 1.2;
+        /* 이미지의 보라 톤 느낌을 추가하고 싶다면(선택) */
+        color: #e546ff;
+        align-self: center; /* ✅ 가로축 가운데 정렬 */
+        text-align: center; /* 텍스트도 가운데 */
+      }
+
+      .cta-desc {
+        font-family: Pretendard, sans-serif;
+        font-weight: 700;
+        font-size: clamp(16px, 1.7vw, 18px);
+        line-height: 1.5;
+        color: #000;
+      }
+
+      /* hover/active 기존 동작 유지 */
+      .cta:hover {
+        background: var(--btn-hover);
+      }
+      .cta:active {
+        transform: translateY(2px);
+        box-shadow: 0 4px 0 var(--btn-shadow), 0 0 0 3px var(--btn-border) inset;
+      }
+
+      /* .cta {
+                  appearance: none;
+                  border: none;
+                  cursor: pointer;
+                  outline: 2.5px solid #000;
+                  /* border-radius: 2rem; */
+      padding: 80px 205px;
+      font-size: 22px;
+      font-weight: 700;
+      /* border-radius: 12px; */
+      background: var(--btn);
+      z-index: 20;
+      color: var(--ink); /* 글자 색 고정 */
+
+      /* background-color: #fde4ff; */
+      /* transition: transform 0.05s, background-color 0.25s, box-shadow 0.2s; */
+      /* } */
 
       .cta:focus,
       .cta:active,
@@ -194,17 +245,7 @@
         transform: translateY(2px);
         box-shadow: 0 4px 0 var(--btn-shadow), 0 0 0 3px var(--btn-border) inset;
       }
-      /* .cta-shadow {
-        position: absolute;
-        inset-inline: calc(50% - 45%);
-        bottom: 12px;
-        height: 14px;
-        background: rgba(0, 0, 0, 0.18);
-        border-radius: 40px;
-        filter: blur(8px);
-        z-index: 1;
-      } */
-      @media (max-width: 520px) {
+      */ @media (max-width: 520px) {
         .cta {
           font-size: 16px;
           padding: 16px 22px;
@@ -345,7 +386,12 @@
         <div class="cta-shadow-box"></div>
 
         <button id="startBtn" class="cta" type="button">
-          나의 기타 동물 테스트 시작하기
+          <span class="cta-title">너는 “코끼리 땃쥐” 같은 사람!!</span>
+          <span class="cta-desc">
+            사람들 속에서도 외로움을 느끼고, 무리에 섞이는 것보다 나만의 자리를
+            지키는 편이야. 소속을 원하면서도 동시에 벗어나고 싶은 마음이
+            공존하는, 경계 위의 존재지.
+          </span>
         </button>
       </div>
     </main>
