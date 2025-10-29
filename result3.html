@@ -140,7 +140,7 @@
         display: grid;
         place-items: center;
         z-index: 2;
-        transform: translateX(-48px) translateY(10px) scale(1.2);
+        transform: translateX(-18px) translateY(10px) scale(1);
         /* height: auto; */
         /* right: 31.25rem; */
       }
@@ -226,7 +226,8 @@
       /* background: var(--btn);
       z-index: 20;
       color: var(--ink);
-      글자 색 고정  */
+      글자 색 고정 */
+      /* */
 
       /* background-color: #fde4ff; */
       /* transition: transform 0.05s, background-color 0.25s, box-shadow 0.2s; */
@@ -345,7 +346,7 @@
       </div>
       <div class="speech" aria-hidden="true">
         <img src="src/svg/speech_bubble.svg" alt="" style="width: 330px" />
-        <p class="speech-text">코끼리 땃쥐..</p>
+        <p class="speech-text">코알라..</p>
       </div>
       <!-- 말풍선 배경 -->
 
@@ -387,11 +388,10 @@
         <div class="cta-shadow-box"></div>
 
         <button id="startBtn" class="cta" type="button">
-          <span class="cta-title">너는 “코끼리 땃쥐” 같은 사람!!</span>
+          <span class="cta-title">너는 “코알라” 같은 사람!!</span>
           <span class="cta-desc">
-            사람들 속에서도 외로움을 느끼고, 무리에 섞이는 것보다 나만의 자리를
-            지키는 편이야. 소속을 원하면서도 동시에 벗어나고 싶은 마음이
-            공존하는, 경계 위의 존재지.
+            느긋하고 귀엽지만, 루틴이 깨지면 쉽게 불안해져.<br />낯선 환경보다는
+            익숙한 공간에서 자기만의 속도로 살아가는 걸 좋아하지.
           </span>
         </button>
       </div>
@@ -400,7 +400,7 @@
     <script>
       /* 중앙 실루엣: 1번 이미지 */
       const creatureEl = document.getElementById('creature');
-      creatureEl.src = 'src/img/2_1.png';
+      creatureEl.src = 'src/img/2_3.png';
 
       /* 버튼 클릭 시 이동 */
       document.getElementById('startBtn').addEventListener('click', () => {
