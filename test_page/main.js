@@ -1,4 +1,4 @@
-const delay = 9000;
+const delay = 7500;
 
 const debounce = (fn, delay) => {
   let timer;
